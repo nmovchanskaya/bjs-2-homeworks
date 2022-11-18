@@ -1,5 +1,6 @@
+"use strict";
 function solveEquation(a, b, c) {
-  "use strict";
+
   let arr = [];
   let d;
   let f;
@@ -29,14 +30,14 @@ function solveEquation(a, b, c) {
 }
 
 function isNaNMessage(param) {
-  "use strict";
+
   if (isNaN(Number(param.value)) || param.value === "") {
     return true;
   }
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
-  "use strict";
+
   let totalAmount;
 
   let paramArr = [
