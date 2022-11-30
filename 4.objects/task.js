@@ -13,28 +13,20 @@ Student.prototype.addMark = function (mark) {
       this.marks = [mark]; 
     } else {
       this.marks.push(mark);
-    }
+   }
 }
 
 Student.prototype.addMarks = function (...marks) {
-  i = 0;
-  for (let mark of marks) {
-    if (!this.hasOwnProperty('marks') && i === 0){ 
-      this.marks = [mark]; 
-    }
-    else {
-      this.marks.push(mark);
-    }
-    i++;
+  if (!this.hasOwnProperty('marks')){ 
+    this.marks = marks; 
+  } else {
+    this.marks.push(...marks);
   }
 }
 
 Student.prototype.getAverage = function () {
   if (this.hasOwnProperty('marks')) {
     return this.marks.reduce((acc, item) => acc + item, 0) / this.marks.length;
-  }
-  else {
-    return;
   }
 }
 
