@@ -1,8 +1,9 @@
 let student1 = new Student("Tony", "male", 37);
 student1.setSubject("Algebra");
 student1.addMark(5);
-student1.addMark(4);
+student1.addMarks(4,5,3);
 student1.addMark(5);
+console.log(student1.getAverage());
 
 let student2 = new Student("Buzz", "female", 35);
 student2.setSubject("Geometry");
