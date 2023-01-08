@@ -76,24 +76,56 @@ class Library {
         }
     }
 
-    findBookBy(etype, value){
-        for (let i = 0; i < this.books.length; i++) {
-            let book = this.books[i];
-            if (book[etype] === value) {
-                return book;
-            }
-        }
-        return null;
+    findBookBy(type, value){
+        const findResult = this.books.find((item) => item[type] === value);
+        return findResult || null;
     }
 
     giveBookByName(bookName) {
-        for (let i = 0; i < this.books.length; i++) {
-            let book = this.books[i];
-            if (book.name === bookName) {
-                this.books.splice(i, 1);
-                return book;
-            }
+        const findResult = this.books.find((item) => item.name === bookName);
+        this.books = this.books.filter((item) => item.name !== bookName);
+        return findResult || null;
+    }
+}
+
+class Mark {
+    constructor(value, subject) {
+        this.value = value;
+        this.subject = subject;
+    }
+}
+class Student {
+    constructor(name, gender, age) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.marks = [];
+    }
+
+    addMark (value, subject) {
+        if (value >= 1 && value <= 5) {
+            this.marks.push(new Mark(value, subject));
         }
-        return null;
+    }
+
+    getAverageBySubject(subjectName) {
+
+        const marksBySubject = this.marks.filter((item) => item.subject === subjectName);
+        if (marksBySubject.length > 0) {
+            return (marksBySubject.reduce((acc, item) => acc + item.value, 0) / marksBySubject.length);
+        }
+        else {
+            return null;
+        }
+    }
+
+    getAverage() {
+
+        if (this.marks.length > 0) {
+            return this.marks.reduce((acc, item) => acc + item.value, 0) / this.marks.length;
+        }
+        else {
+            return null;
+        }
     }
 }
