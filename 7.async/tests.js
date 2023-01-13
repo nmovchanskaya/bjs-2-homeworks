@@ -23,11 +23,11 @@ describe('Домашнее задание к лекции 7 «Асинхронн
   });
 
   it('id интервала должно отсутствовать до запуска', () => {
-    expect(clock.timerId).toBeNull();
+    expect(clock.timerId).toBeUndefined();
   });
 
   it('необходимо запускать будильник', () => {
-    clock.addClock("16:45", f => f, 1);
+    clock.addClock("20:05", f => f, 1);
     clock.start();
     expect(clock.timerId).toBeDefined();
   });
