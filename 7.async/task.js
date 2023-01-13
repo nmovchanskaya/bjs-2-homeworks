@@ -1,7 +1,7 @@
 class AlarmClock {
     constructor() {
         this.alarmCollection = [];
-        this.timerId;// = null; //когда оставляю пустым, тест на null возвращает ошибку, т.к значение undefined
+        this.timerId;
     }
 
     addClock (time, func, id) {
