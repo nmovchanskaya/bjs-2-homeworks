@@ -2,21 +2,20 @@ function cachingDecoratorNew(func) {
   let cache = [];
   return function(...args) {
     let newhash = args.join(',');
-    let findedItem = cache.find((item) => item.hash.trim() === newhash.trim());
+    let findedItem = cache.find((item) => item.hash === newhash);
     if (findedItem) {
       console.log("Нашли в кэше: " + findedItem.value);
       return "Из кэша: " + findedItem.value;
     }
-    else {
-      let result = func(...args);
-      cache.push({hash: newhash, value: result});
-      if (cache.length > 5) {
-        cache.shift();
-      }
-
-      console.log("Вычислили: " + result);
-      return "Вычисляем: " + result;
+    
+    let result = func(...args);
+    cache.push({hash: newhash, value: result});
+    if (cache.length > 5) {
+      cache.shift();
     }
+
+    console.log("Вычислили: " + result);
+    return "Вычисляем: " + result;
   }
 }
 
@@ -25,8 +24,7 @@ function debounceDecoratorNew(func, delay) {
   let timeoutId = null;
 
   function wrapper(...args) {
-    wrapper.times.push(Date.now());
-    if (wrapper.allCount == 0) {
+    if (wrapper.allCount === 0) {
       func(...args);
       wrapper.count++;
     }
@@ -46,7 +44,6 @@ function debounceDecoratorNew(func, delay) {
 
   wrapper.count = 0;
   wrapper.allCount = 0;
-  wrapper.times = [];
   return wrapper;
 }
 
